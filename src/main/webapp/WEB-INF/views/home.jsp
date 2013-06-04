@@ -82,7 +82,7 @@ $(document).ready(function() {
                 var so = $('#account_sold').val();
                 var am = $('#account_amount').val();
                 var op = $('input[name=operation]:checked').val();
-                bValid = bValid && checkRegexp( $('#account_amount'), /^([0-9])+$/, "The field <i>Amount</i> must contain only digits", tips);
+                bValid = bValid && checkRegexp( $('#account_amount'), /^([0-9])+$/, "The field Amount must contain only digits", tips);
                 if (op=="withdraw") {
                     bValid = bValid && checkSold($('#account_amount'), am, "Insufficient money for the withdrawal", tips);
                 }
@@ -163,9 +163,9 @@ $(document).ready(function() {
 </head>
 
 <body>
-<table border="1" style="width: 90%">
+<table border="1" style="width: 60%">
     <tr>
-        <td>Welcome <h2 id="loginName"></h2>
+        <td>Welcome <span id="loginName"></span>
             <p><input type='button' id='logout' value='Logout'><p/>
         </td>
     </tr>
@@ -173,15 +173,15 @@ $(document).ready(function() {
         <td>
             <h3>Account Details</h3>
             <p class="validateTips"></p>
-            <div><label>Number</label><input type="text" id="account_number" name="account_number" class="text ui-widget-content ui-corner-all" readonly="true"/></div>
-            <div><label>Sold</label><input type="text" id="account_sold" name="account_sold" class="text ui-widget-content ui-corner-all" readonly="true"/></div>
-            <div><label>Amount</label><input type="text" id="account_amount" name="account_amount" class="text ui-widget-content ui-corner-all"/></div>
+            <div><label>Number </label><input type="text" id="account_number" name="account_number" class="text ui-widget-content ui-corner-all" readonly="true"/></div>
+            <div><label>Sold   </label><input type="text" id="account_sold" name="account_sold" class="text ui-widget-content ui-corner-all" readonly="true"/></div>
+            <div><label>Amount </label><input type="text" id="account_amount" name="account_amount" class="text ui-widget-content ui-corner-all"/></div>
             <div>
                 <input type="radio" name="operation" value="deposit">Deposit</input>
                 <input type="radio" name="operation" value="withdraw">Withdrawal</input>
-                <input type='button' id='executeOperation' value='Execute operation'/>
             </div>
             <div>
+                <input type='button' id='executeOperation' value='Execute operation'/>
                 <input type='button' id='return_to_list' value='Return'/>
             </div>
         </td>

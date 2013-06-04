@@ -131,9 +131,9 @@ $(document).ready(function() {
 </head>
 
 <body>
-<table border="1" style="width: 90%">
+<table border="1" style="width: 60%">
 <tr>
-	<td>Welcome <h2 id="loginName"></h2>
+    <td>Welcome <span id="loginName"></span>
 		<p><input type='button' id='logout' value='Logout'><p/>
 	</td>
 </tr>

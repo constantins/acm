@@ -38,9 +38,9 @@
 		function updateTips( t, tips) {
 			tips.text( t )
 				.addClass( "ui-state-highlight" );
-			setTimeout(function() {
-				tips.removeClass( "ui-state-highlight", 1500 );
-			}, 5000 );
+//			setTimeout(function() {
+//				tips.removeClass( "ui-state-highlight", 1500 );
+//			}, 5000 );
 		}
 
 		function checkRegexp( o, regexp, n, tips) {
