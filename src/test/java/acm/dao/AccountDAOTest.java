@@ -1,7 +1,9 @@
-package acm.service;
+package acm.dao;
 
 import acm.model.Account;
 import acm.model.User;
+import acm.service.AccountService;
+import acm.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,62 +17,61 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"/application-context.xml"})
+public class AccountDAOTest {
 
-public class AccountServiceTest {
-
-    private final String deposit = "deposit";
-    private final String withdraw = "withdraw";
     private final String accountNo1 = "accountno1";
     private final String accountNo2 = "accountno2";
-    private final String amount1 = "1";
+    private final Long amount1 = 1L;
     private final String u1Name = "user1";
 
     @Autowired
-    private UserService userService;
+    private UserDAO userDAO;
 
-    public void setUserService(UserService userService) {
-        this.userService = userService;
+    public UserDAO getUserDAO() {
+        return userDAO;
     }
 
     @Autowired
-    private AccountService accountService;
+    private AccountDAO accountDAO;
 
-    public void setAccountService(AccountService accountService) {
-        this.accountService = accountService;
+    public void setAccountDAO(AccountDAO accountDAO) {
+        this.accountDAO = accountDAO;
     }
 
     @Test
     public void testGetAccountByNumber() {
-        Account acc1 = accountService.getAccountByNumber(accountNo1);
+        Account acc1 = accountDAO.getAccountByNumber(accountNo1);
         assertNotNull(acc1.getId());
 
-        Account acc2 = accountService.getAccountByNumber(accountNo2);
+        Account acc2 = accountDAO.getAccountByNumber(accountNo2);
         assertNotNull(acc2.getId());
     }
 
     @Test
     public void testUpdate() {
-        Account acc1 = accountService.getAccountByNumber(accountNo1);
+        Account acc1 = accountDAO.getAccountByNumber(accountNo1);
         assertNotNull(acc1.getId());
+        Long sold = acc1.getSold();
 
-        Account acc_op1 = accountService.update(acc1.getNumber(), deposit, amount1);
+        acc1.setSold(amount1);
+        Account acc_op1 = accountDAO.update(acc1);
         assertNotNull(acc_op1);
-        assertTrue(acc1.getSold() + 1 == acc_op1.getSold());
+        assertTrue(acc_op1.getSold().longValue() == amount1);
 
 
-        Account acc_op2 = accountService.update(acc1.getNumber(), withdraw, amount1);
+        acc_op1.setSold(sold);
+        Account acc_op2 = accountDAO.update(acc_op1);
         assertNotNull(acc_op2);
-        assertTrue(acc1.getSold().longValue() == acc_op2.getSold().longValue());
+        assertTrue(acc_op2.getSold().longValue() == sold.longValue());
     }
 
     @Test
     public void testGetAllAccountsByUser() {
-        User u = userService.getUserByName(u1Name);
+        User u = userDAO.getUserByName(u1Name);
         assertNotNull(u.getId());
 
-        List<Account> accounts = accountService.getAllAccountsByUser(u);
+        List<Account> accounts = accountDAO.getAllAccountsByUser(u);
         assertNotNull(accounts);
         assertTrue(accounts.size() > 0);
     }
-
 }
