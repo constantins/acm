@@ -28,7 +28,12 @@ public class AccountController {
     @Autowired
     private UserService userService;
 
-
+    /**
+     * list details for the curent account
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "/accountDetails", method = RequestMethod.GET)
     public
     @ResponseBody
@@ -39,6 +44,12 @@ public class AccountController {
         return vo;
     }
 
+    /**
+     * list all user acounts
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public
     @ResponseBody
@@ -55,6 +66,14 @@ public class AccountController {
         return result;
     }
 
+    /**
+     * modifies the user account according to the amount and the operation selected
+     * @param request
+     * @param response
+     * @param operation
+     * @param amount
+     * @return
+     */
     @RequestMapping(value = "/executeOperation", method = RequestMethod.POST)
     public
     @ResponseBody
@@ -69,6 +88,13 @@ public class AccountController {
         return vo;
     }
 
+    /**
+     * list details for the requested account
+     * @param request
+     * @param response
+     * @param number
+     * @return
+     */
     @RequestMapping(value = "/accountList", method = RequestMethod.POST)
     public
     @ResponseBody

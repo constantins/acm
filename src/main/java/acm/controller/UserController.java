@@ -20,6 +20,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * check if requested user is still active
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "/isLogin", method = RequestMethod.GET)
     public
     @ResponseBody
@@ -37,6 +43,13 @@ public class UserController {
         return status;
     }
 
+    /**
+     * get the requested user
+     * @param request
+     * @param response
+     * @param username
+     * @return
+     */
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     public
     @ResponseBody
@@ -46,6 +59,12 @@ public class UserController {
         return u;
     }
 
+    /**
+     * logout the current user
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request, HttpServletResponse response) {
         request.getSession().invalidate();
@@ -53,6 +72,13 @@ public class UserController {
         return "index";
     }
 
+    /**
+     * check if requested user exist
+     * @param request
+     * @param response
+     * @param userid
+     * @return
+     */
     @RequestMapping(value = {"/checkLogin", "/login"}, method = RequestMethod.POST)
     public
     @ResponseBody
